@@ -13,8 +13,9 @@ class ChatViewController: UIViewController {
     
     
    
+    @IBOutlet weak var tfChat: UITextField!
     @IBOutlet weak var tbView: UITableView!
-    var data = [Int]()
+    var data = [Message]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,10 +41,11 @@ class ChatViewController: UIViewController {
     }
 
     @IBAction func btnAdd(_ sender: Any) {
-        data.append(1)
+        data.append(Message(name: tfChat.text!))
         tbView.beginUpdates()
         tbView.re.insertRows(at: [IndexPath(row: data.count - 1, section: 0)], with: .automatic)
         tbView.endUpdates()
+        tfChat.text = nil
     }
     
 
@@ -63,7 +65,10 @@ extension ChatViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell", for: indexPath) as! ChatTableViewCell
-        cell.configLayout(index: indexPath.row)
+       let message = data[data.count - (indexPath.row + 1)]
+        print("~~> \(data.count)  \(indexPath.row)  \(data.count - (indexPath.row + 1))")
+        
+        cell.configLayout(index: message.name)
         
         return cell
     }

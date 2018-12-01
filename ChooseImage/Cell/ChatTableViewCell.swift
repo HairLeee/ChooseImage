@@ -22,8 +22,8 @@ class ChatTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configLayout(index:Int){
-        lbName.text = "Ambition \(index)"
+    func configLayout(index:String){
+        lbName.text = index
     }
     
 }

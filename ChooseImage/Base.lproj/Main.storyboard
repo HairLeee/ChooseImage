@@ -63,31 +63,44 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFV-Q2-8Rz">
-                                <rect key="frame" x="87" y="571" width="200" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgY-Nj-GdO">
+                                <rect key="frame" x="275" y="577" width="80" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ekH-5Z-sAq"/>
-                                    <constraint firstAttribute="width" constant="200" id="zEm-38-9dm"/>
+                                    <constraint firstAttribute="height" constant="50" id="DfN-sL-8iz"/>
+                                    <constraint firstAttribute="width" constant="80" id="Nl4-lh-2Zc"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Send"/>
                                 <connections>
-                                    <action selector="btnAdd:" destination="9gc-MX-gVR" eventType="touchUpInside" id="Er7-g7-fGR"/>
+                                    <action selector="btnAdd:" destination="9gc-MX-gVR" eventType="touchUpInside" id="7si-Ct-Bsi"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sPq-p7-Z6g">
+                                <rect key="frame" x="20" y="572" width="235" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ow1-xl-Ozt"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="EFV-Q2-8Rz" firstAttribute="top" secondItem="STd-ak-iAm" secondAttribute="bottom" constant="47" id="Qoi-ob-F1W"/>
+                            <constraint firstItem="sPq-p7-Z6g" firstAttribute="top" secondItem="STd-ak-iAm" secondAttribute="bottom" constant="48" id="1gO-tV-41h"/>
+                            <constraint firstItem="sPq-p7-Z6g" firstAttribute="leading" secondItem="xWK-h3-L4s" secondAttribute="leading" constant="20" id="4M4-5l-Ogq"/>
+                            <constraint firstItem="sPq-p7-Z6g" firstAttribute="centerY" secondItem="RgY-Nj-GdO" secondAttribute="centerY" id="D1u-pd-apX"/>
+                            <constraint firstItem="xWK-h3-L4s" firstAttribute="bottom" secondItem="RgY-Nj-GdO" secondAttribute="bottom" constant="40" id="RWp-S3-CBt"/>
                             <constraint firstItem="STd-ak-iAm" firstAttribute="leading" secondItem="xWK-h3-L4s" secondAttribute="leading" id="YwF-nD-qQL"/>
-                            <constraint firstItem="xWK-h3-L4s" firstAttribute="bottom" secondItem="EFV-Q2-8Rz" secondAttribute="bottom" constant="46" id="eNg-XE-wdf"/>
                             <constraint firstItem="STd-ak-iAm" firstAttribute="top" secondItem="xWK-h3-L4s" secondAttribute="top" id="gll-zc-21A"/>
                             <constraint firstItem="xWK-h3-L4s" firstAttribute="trailing" secondItem="STd-ak-iAm" secondAttribute="trailing" id="iwj-Mb-7Oj"/>
-                            <constraint firstItem="EFV-Q2-8Rz" firstAttribute="centerX" secondItem="CPT-av-FQO" secondAttribute="centerX" id="q9O-vm-uRV"/>
+                            <constraint firstItem="RgY-Nj-GdO" firstAttribute="leading" secondItem="sPq-p7-Z6g" secondAttribute="trailing" constant="20" id="s90-w9-Sbk"/>
+                            <constraint firstItem="xWK-h3-L4s" firstAttribute="trailing" secondItem="RgY-Nj-GdO" secondAttribute="trailing" constant="20" id="w8U-1O-ij2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xWK-h3-L4s"/>
                     </view>
                     <connections>
                         <outlet property="tbView" destination="STd-ak-iAm" id="EJ3-dJ-XTi"/>
+                        <outlet property="tfChat" destination="sPq-p7-Z6g" id="Ejj-gE-Uqi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4do-KB-UuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
