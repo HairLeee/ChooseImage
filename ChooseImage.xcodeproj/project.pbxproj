@@ -18,6 +18,11 @@
 		81F8107F21B243120049F322 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8107D21B243120049F322 /* ChatTableViewCell.swift */; };
 		81F8108021B243120049F322 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F8107E21B243120049F322 /* ChatTableViewCell.xib */; };
 		81F8108221B25B740049F322 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8108121B25B740049F322 /* Message.swift */; };
+		81F8108521B272D70049F322 /* ChatRightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8108321B272D70049F322 /* ChatRightTableViewCell.swift */; };
+		81F8108621B272D70049F322 /* ChatRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F8108421B272D70049F322 /* ChatRightTableViewCell.xib */; };
+		81F8108921B272FC0049F322 /* ChatLeftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8108721B272FC0049F322 /* ChatLeftTableViewCell.swift */; };
+		81F8108A21B272FC0049F322 /* ChatLeftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F8108821B272FC0049F322 /* ChatLeftTableViewCell.xib */; };
+		81F8108C21B273B50049F322 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8108B21B273B50049F322 /* PaddingLabel.swift */; };
 		9A9EB5CC6E793D14FA0A8D0C /* Pods_ChooseImageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A154F2D50605F49556B09 /* Pods_ChooseImageUITests.framework */; };
 		E9E5D7974A7C7B4EAE6ECAE5 /* Pods_ChooseImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857218E47C0DDB3364CD9497 /* Pods_ChooseImage.framework */; };
 		F9814F255C178495A7E58F34 /* Pods_ChooseImageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D52CDB47A8CF005D63715CC8 /* Pods_ChooseImageTests.framework */; };
@@ -59,6 +64,11 @@
 		81F8107D21B243120049F322 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		81F8107E21B243120049F322 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		81F8108121B25B740049F322 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		81F8108321B272D70049F322 /* ChatRightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRightTableViewCell.swift; sourceTree = "<group>"; };
+		81F8108421B272D70049F322 /* ChatRightTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatRightTableViewCell.xib; sourceTree = "<group>"; };
+		81F8108721B272FC0049F322 /* ChatLeftTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLeftTableViewCell.swift; sourceTree = "<group>"; };
+		81F8108821B272FC0049F322 /* ChatLeftTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatLeftTableViewCell.xib; sourceTree = "<group>"; };
+		81F8108B21B273B50049F322 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		857218E47C0DDB3364CD9497 /* Pods_ChooseImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChooseImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D7C40EFAB12D0F0ABED379B /* Pods-ChooseImageUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChooseImageUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChooseImageUITests/Pods-ChooseImageUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CA1AEB9BDC0A6CBB3978539F /* Pods-ChooseImage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChooseImage.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChooseImage/Pods-ChooseImage.release.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +140,7 @@
 				819020B321B17885006EBB12 /* LaunchScreen.storyboard */,
 				819020B621B17885006EBB12 /* Info.plist */,
 				81F8107A21B240980049F322 /* ChatViewController.swift */,
+				81F8108B21B273B50049F322 /* PaddingLabel.swift */,
 			);
 			path = ChooseImage;
 			sourceTree = "<group>";
@@ -158,6 +169,10 @@
 				81F8107D21B243120049F322 /* ChatTableViewCell.swift */,
 				81F8107E21B243120049F322 /* ChatTableViewCell.xib */,
 				81F8108121B25B740049F322 /* Message.swift */,
+				81F8108321B272D70049F322 /* ChatRightTableViewCell.swift */,
+				81F8108421B272D70049F322 /* ChatRightTableViewCell.xib */,
+				81F8108721B272FC0049F322 /* ChatLeftTableViewCell.swift */,
+				81F8108821B272FC0049F322 /* ChatLeftTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -297,8 +312,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				819020B521B17885006EBB12 /* LaunchScreen.storyboard in Resources */,
+				81F8108621B272D70049F322 /* ChatRightTableViewCell.xib in Resources */,
 				81F8108021B243120049F322 /* ChatTableViewCell.xib in Resources */,
 				819020B221B17885006EBB12 /* Assets.xcassets in Resources */,
+				81F8108A21B272FC0049F322 /* ChatLeftTableViewCell.xib in Resources */,
 				819020B021B17885006EBB12 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,8 +418,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81F8108921B272FC0049F322 /* ChatLeftTableViewCell.swift in Sources */,
 				819020AD21B17885006EBB12 /* ViewController.swift in Sources */,
 				81F8107F21B243120049F322 /* ChatTableViewCell.swift in Sources */,
+				81F8108521B272D70049F322 /* ChatRightTableViewCell.swift in Sources */,
+				81F8108C21B273B50049F322 /* PaddingLabel.swift in Sources */,
 				81F8108221B25B740049F322 /* Message.swift in Sources */,
 				81F8107B21B240980049F322 /* ChatViewController.swift in Sources */,
 				819020AB21B17885006EBB12 /* AppDelegate.swift in Sources */,

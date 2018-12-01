@@ -1,5 +1,5 @@
 //
-//  ChatTableViewCell.swift
+//  ChatLeftTableViewCell.swift
 //  ChooseImage
 //
 //  Created by Ambi on 12/1/18.
@@ -8,22 +8,17 @@
 
 import UIKit
 
-class ChatTableViewCell: UITableViewCell {
+class ChatLeftTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var lbName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-     
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    
-    func configLayout(index:String){
-        lbName.text = index
     }
     
 }
