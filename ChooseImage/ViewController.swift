@@ -15,7 +15,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     
     @IBAction func btnChooseImage(_ sender: Any) {
-          self.pickImage(isLibrary: true)
+//          self.pickImage(isLibrary: true)
+        let Vc = ChatViewController()
+        navigationController?.pushViewController(Vc, animated: true)
     }
     
     
@@ -59,6 +61,8 @@ extension ViewController : TOCropViewControllerDelegate {
         
         
         cropViewController.dismiss(animated: true, completion: nil)
+        
+     
     }
     
     func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {

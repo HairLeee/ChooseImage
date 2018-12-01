@@ -14,6 +14,9 @@
 		819020B521B17885006EBB12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 819020B321B17885006EBB12 /* LaunchScreen.storyboard */; };
 		819020C021B17885006EBB12 /* ChooseImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819020BF21B17885006EBB12 /* ChooseImageTests.swift */; };
 		819020CB21B17885006EBB12 /* ChooseImageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819020CA21B17885006EBB12 /* ChooseImageUITests.swift */; };
+		81F8107B21B240980049F322 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8107A21B240980049F322 /* ChatViewController.swift */; };
+		81F8107F21B243120049F322 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8107D21B243120049F322 /* ChatTableViewCell.swift */; };
+		81F8108021B243120049F322 /* ChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F8107E21B243120049F322 /* ChatTableViewCell.xib */; };
 		9A9EB5CC6E793D14FA0A8D0C /* Pods_ChooseImageUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17A154F2D50605F49556B09 /* Pods_ChooseImageUITests.framework */; };
 		E9E5D7974A7C7B4EAE6ECAE5 /* Pods_ChooseImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857218E47C0DDB3364CD9497 /* Pods_ChooseImage.framework */; };
 		F9814F255C178495A7E58F34 /* Pods_ChooseImageTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D52CDB47A8CF005D63715CC8 /* Pods_ChooseImageTests.framework */; };
@@ -51,6 +54,9 @@
 		819020C621B17885006EBB12 /* ChooseImageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChooseImageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		819020CA21B17885006EBB12 /* ChooseImageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseImageUITests.swift; sourceTree = "<group>"; };
 		819020CC21B17885006EBB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81F8107A21B240980049F322 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		81F8107D21B243120049F322 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		81F8107E21B243120049F322 /* ChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTableViewCell.xib; sourceTree = "<group>"; };
 		857218E47C0DDB3364CD9497 /* Pods_ChooseImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChooseImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D7C40EFAB12D0F0ABED379B /* Pods-ChooseImageUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChooseImageUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChooseImageUITests/Pods-ChooseImageUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CA1AEB9BDC0A6CBB3978539F /* Pods-ChooseImage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChooseImage.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChooseImage/Pods-ChooseImage.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,12 +120,14 @@
 		819020A921B17885006EBB12 /* ChooseImage */ = {
 			isa = PBXGroup;
 			children = (
+				81F8107C21B242FA0049F322 /* Cell */,
 				819020AA21B17885006EBB12 /* AppDelegate.swift */,
 				819020AC21B17885006EBB12 /* ViewController.swift */,
 				819020AE21B17885006EBB12 /* Main.storyboard */,
 				819020B121B17885006EBB12 /* Assets.xcassets */,
 				819020B321B17885006EBB12 /* LaunchScreen.storyboard */,
 				819020B621B17885006EBB12 /* Info.plist */,
+				81F8107A21B240980049F322 /* ChatViewController.swift */,
 			);
 			path = ChooseImage;
 			sourceTree = "<group>";
@@ -140,6 +148,15 @@
 				819020CC21B17885006EBB12 /* Info.plist */,
 			);
 			path = ChooseImageUITests;
+			sourceTree = "<group>";
+		};
+		81F8107C21B242FA0049F322 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				81F8107D21B243120049F322 /* ChatTableViewCell.swift */,
+				81F8107E21B243120049F322 /* ChatTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		CADB2D257D2B1893CD2A7455 /* Pods */ = {
@@ -277,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				819020B521B17885006EBB12 /* LaunchScreen.storyboard in Resources */,
+				81F8108021B243120049F322 /* ChatTableViewCell.xib in Resources */,
 				819020B221B17885006EBB12 /* Assets.xcassets in Resources */,
 				819020B021B17885006EBB12 /* Main.storyboard in Resources */,
 			);
@@ -360,10 +378,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ChooseImage/Pods-ChooseImage-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ReverseExtension/ReverseExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReverseExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +399,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				819020AD21B17885006EBB12 /* ViewController.swift in Sources */,
+				81F8107F21B243120049F322 /* ChatTableViewCell.swift in Sources */,
+				81F8107B21B240980049F322 /* ChatViewController.swift in Sources */,
 				819020AB21B17885006EBB12 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

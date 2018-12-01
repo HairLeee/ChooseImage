@@ -1,16 +1,20 @@
 PODS:
+  - ReverseExtension (0.5.0)
   - TOCropViewController (2.3.8)
 
 DEPENDENCIES:
+  - ReverseExtension
   - TOCropViewController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ReverseExtension
     - TOCropViewController
 
 SPEC CHECKSUMS:
+  ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
   TOCropViewController: 0a075f02c253e88095143bbac7b013fc6fba5090
 
-PODFILE CHECKSUM: 3f29729009be162f45f5ed8cdef7fa8e3e367702
+PODFILE CHECKSUM: 0bb1153b46b52b0f21eba6968f8d558adfd2530f
 
 COCOAPODS: 1.5.3
