@@ -1,0 +1,16 @@
+PODS:
+  - TOCropViewController (2.3.8)
+
+DEPENDENCIES:
+  - TOCropViewController
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - TOCropViewController
+
+SPEC CHECKSUMS:
+  TOCropViewController: 0a075f02c253e88095143bbac7b013fc6fba5090
+
+PODFILE CHECKSUM: 3f29729009be162f45f5ed8cdef7fa8e3e367702
+
+COCOAPODS: 1.5.3

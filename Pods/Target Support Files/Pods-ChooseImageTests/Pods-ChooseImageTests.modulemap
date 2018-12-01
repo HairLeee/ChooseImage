@@ -1,0 +1,6 @@
+framework module Pods_ChooseImageTests {
+  umbrella header "Pods-ChooseImageTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
