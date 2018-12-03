@@ -58,8 +58,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="STd-ak-iAm">
-                                <rect key="frame" x="0.0" y="40" width="375" height="562"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="STd-ak-iAm">
+                                <rect key="frame" x="0.0" y="40" width="375" height="582"/>
                                 <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUt-BK-vzW">
@@ -122,7 +122,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="QUt-BK-vzW" firstAttribute="top" secondItem="STd-ak-iAm" secondAttribute="bottom" constant="20" id="CpM-5c-zzI"/>
+                            <constraint firstItem="QUt-BK-vzW" firstAttribute="top" secondItem="STd-ak-iAm" secondAttribute="bottom" id="CpM-5c-zzI"/>
                             <constraint firstItem="xWK-h3-L4s" firstAttribute="trailing" secondItem="QUt-BK-vzW" secondAttribute="trailing" id="LLf-BM-j6N"/>
                             <constraint firstItem="QUt-BK-vzW" firstAttribute="leading" secondItem="xWK-h3-L4s" secondAttribute="leading" id="TFe-D3-Er8"/>
                             <constraint firstItem="STd-ak-iAm" firstAttribute="leading" secondItem="xWK-h3-L4s" secondAttribute="leading" id="YwF-nD-qQL"/>
