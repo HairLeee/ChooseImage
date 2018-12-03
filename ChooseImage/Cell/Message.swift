@@ -8,11 +8,29 @@
 
 import UIKit
 
-class Message {
+enum MessageType {
+    case text
+    case image
+    case icon
+}
 
-    var name:String
-    init(name:String) {
-        self.name =  name
+class Message : NSObject {
+    
+    var receiveId:String = ""
+    var sendId:String = ""
+    var roomId:String = ""
+    var content:String = ""
+    var type:MessageType
+    var date: Date
+    
+    init(receiveId:String,sendId:String,roomId:String,content:String, type: MessageType,date: Date) {
+        self.receiveId = receiveId
+        self.sendId = sendId
+        self.roomId = roomId
+        self.content = content
+        self.type = type
+        self.date = date
     }
-
+    
+    
 }

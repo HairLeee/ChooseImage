@@ -18,9 +18,9 @@ class ChatRightTableViewCell: UITableViewCell {
         lbMessage.layer.cornerRadius = 8
         lbMessage.layer.masksToBounds = true
         
-        lbMessage.backgroundColor =   hexStringToUIColor(hex: "C7C4F3")
+        lbMessage.backgroundColor =   hexStringToUIColor(hex: "FFEE84")
         lbMessage.layer.borderColor = UIColor.gray.cgColor
-        lbMessage.layer.borderWidth = 1
+        lbMessage.layer.borderWidth = 0.2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,7 +31,7 @@ class ChatRightTableViewCell: UITableViewCell {
     
     func configLayout(messages:[Message], index:Int){
         
-        lbMessage.text = messages[index].name
+        lbMessage.text = messages[index].content
     }
     
     

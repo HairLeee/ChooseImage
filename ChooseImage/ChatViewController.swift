@@ -16,7 +16,7 @@ class ChatViewController: UIViewController, UITextViewDelegate {
  
     @IBOutlet weak var tfChat: UITextField!
     @IBOutlet weak var tbView: UITableView!
-    var data = [Message]()
+    var messages = [Message]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +31,7 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         
         
         tbView.register(UINib(nibName: "ChatRightTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatRightTableViewCell")
+        tbView.register(UINib(nibName: "ChatLeftTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatLeftTableViewCell")
         tbView.separatorStyle = .none
         tbView.rowHeight = UITableViewAutomaticDimension
         tbView.backgroundColor = .clear
@@ -86,16 +87,23 @@ class ChatViewController: UIViewController, UITextViewDelegate {
     }
 
     @IBAction func btnAdd(_ sender: Any) {
-        data.append(Message(name: tfChat.text!))
-        tbView.beginUpdates()
-        tbView.re.insertRows(at: [IndexPath(row: data.count - 1, section: 0)], with: .automatic)
-        tbView.endUpdates()
-        tfChat.text = nil
+        let message = Message(receiveId: "2", sendId: "1", roomId: "22", content: self.tfChat.text!, type: .text, date: Date())
+        
+        sendMessage(message)
+
     }
     
     func addImages()  {
         images.append(UIImage(named: "23")!)
     }
+    
+    func sendMessage(_ message: Message) {
+        messages.append(message)
+        tbView.beginUpdates()
+        tbView.re.insertRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .automatic)
+        tbView.endUpdates()
+    }
+    
     
     var images = [UIImage]()
     var scrollView = UIScrollView()
@@ -166,15 +174,13 @@ extension ChatViewController: UITableViewDelegate {
 
 extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRightTableViewCell", for: indexPath) as! ChatRightTableViewCell
-       let message = data[data.count - (indexPath.row + 1)]
-        print("~~> \(data.count)  \(indexPath.row)  \(data.count - (indexPath.row + 1))")
-        
-        cell.configLayout(messages: data, index: data.count - (indexPath.row + 1))
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLeftTableViewCell", for: indexPath) as! ChatLeftTableViewCell
+       let message = messages[messages.count - (indexPath.row + 1)]
+        cell.configLayout(messages: messages, index: messages.count - (indexPath.row + 1))
         
         return cell
     }
