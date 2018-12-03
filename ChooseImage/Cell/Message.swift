@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 enum MessageType {
     case text
@@ -14,23 +15,39 @@ enum MessageType {
     case icon
 }
 
-class Message : NSObject {
+class Message : Mappable {
     
     var receiveId:String = ""
     var sendId:String = ""
     var roomId:String = ""
     var content:String = ""
-    var type:MessageType
-    var date: Date
+    var type: String = "0"
+    var date: String = ""
     
-    init(receiveId:String,sendId:String,roomId:String,content:String, type: MessageType,date: Date) {
-        self.receiveId = receiveId
-        self.sendId = sendId
-        self.roomId = roomId
-        self.content = content
-        self.type = type
-        self.date = date
+    required convenience init?(map: Map) {
+        self.init()
     }
+    
+    func mapping(map: Map) {
+        receiveId <- map["reciveId"]
+        receiveId <- map["sendId"]
+        receiveId <- map["roomId"]
+        receiveId <- map["content"]
+        receiveId <- map["type"]
+        receiveId <- map["date"]
+    }
+    
+    
+
+    
+//    init(receiveId:String,sendId:String,roomId:String,content:String, type: MessageType,date: Date) {
+//        self.receiveId = receiveId
+//        self.sendId = sendId
+//        self.roomId = roomId
+//        self.content = content
+//        self.type = type
+//        self.date = date
+//    }
     
     
 }

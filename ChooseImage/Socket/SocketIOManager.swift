@@ -20,39 +20,52 @@ class SocketIOManager: NSObject {
     //for swift3
     lazy var socket = SocketIOClient(socketURL: URL(string: "http://10.1.5.161:6789")!)
 //    lazy var socket = SocketIOClient(socketURL: URL(string: "http://35.187.243.177:6789")!)
-    static var socketId: String = ""
-    static var listUser = [[String:Any]]()
-    static var listMessage = [[String:Any]]()
-    
-    
+    static var messages = [Message]()
     override init() {
         super.init()
- 
         
         socket.on("sendMessage") { (dataArray, socketAck) -> Void in
             let stringData = dataArray[0] as! String
             let data = stringData.data(using: .utf8)!
+            
+           
             let jsonArray = try! JSONSerialization.jsonObject(with: data, options : .allowFragments) as? [[String:Any]]
+            
+             print("data = \(jsonArray![0])")
             if jsonArray?.count == 1 {
-                SocketIOManager.listMessage.append(jsonArray?[0] as! [String:Any])
-                NotificationCenter.default.post(name: Notification.Name("getMessage"), object: nil)
-            } else {
+                // Everytime you have got a new message !
+                let message = Message()
+                message.receiveId = jsonArray![0]["reciveId"] as! String
+                message.sendId = jsonArray![0]["sendId"] as! String
+                message.roomId = jsonArray![0]["roomId"] as! String
+                message.content = jsonArray![0]["content"] as! String
+                message.type = jsonArray![0]["type"] as! String
+                  SocketIOManager.messages.append(message)
+                   NotificationCenter.default.post(name: Notification.Name("getMessage"), object:nil)
                 
+                
+//                if let message = Message(JSON: jsonArray![0]) {
+//                     SocketIOManager.messages.append(message)
+//                       NotificationCenter.default.post(name: Notification.Name("getMessage"), object:nil)
+//                }
+    
+            } else {
+                // Come here just 1 times - the first time enter the room
+                for json in jsonArray! {
+                    if let message = Message(JSON: json){
+                        if message.sendId != UserIdConfigure.rightId {
+                            SocketIOManager.messages.append(message)
+                        }
+                        
+                    }
+                }
+                
+                  NotificationCenter.default.post(name: Notification.Name("getAllMessage"), object:nil)
             }
+       
            
         }
-        
-//        socket.on("sendMessage") { (dataArray, socketAck) -> Void in
-//
-//            let stringData = dataArray[0] as! String
-//            let data = stringData.data(using: .utf8)!
-//            let jsonArray = try! JSONSerialization.jsonObject(with: data, options : .allowFragments) as? [String:Any]
-//
-////            SocketIOManager.listMessage.append(jsonArray!)
-//            NotificationCenter.default.post(name: Notification.Name("getMessage"), object: nil)
-//        }
-        
-        
+
         socket.on("connect") { (dataArray, socketAck) -> Void in
             print("-------connect-------")
         }
@@ -75,7 +88,7 @@ class SocketIOManager: NSObject {
     }
     
     func sendMessage(message:Message) {
-        let dicData = ["roomId" : message.roomId, "sendId" : message.sendId,"reciveId" : message.receiveId,"content" : message.content, "type": "0"]
+        let dicData = ["roomId" : message.roomId, "sendId" : message.sendId,"reciveId" : message.receiveId,"content" : message.content, "type": message.type]
         socket.emit("sendMessage", dicData)
     }
     

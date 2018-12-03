@@ -16,7 +16,7 @@ class ChatViewController: UIViewController, UITextViewDelegate {
  
     @IBOutlet weak var tfChat: UITextField!
     @IBOutlet weak var tbView: UITableView!
-    var messages = [Message]()
+//    var messages = [Message]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,8 +43,26 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         tbView.re.scrollViewDidReachBottom = { scrollView in
             print("scrollViewDidReachBottom")
         }
+        
+        self.view.backgroundColor = UIColor.hexStringToUIColor(hex: "F4F4F4")
 
-  
+        self.tbView.backgroundColor = UIColor.hexStringToUIColor(hex: "F4F4F4")
+        
+//        let backgroundImage = UIImage(named: "ava")
+//        let imageView = UIImageView(image: backgroundImage)
+//        self.tbView.backgroundView = imageView
+        
+        
+//        let colorTop =  UIColor(red: 255.0/255.0, green: 149.0/255.0, blue: 0.0/255.0, alpha: 1.0).cgColor
+//        let colorBottom = UIColor(red: 255.0/255.0, green: 94.0/255.0, blue: 58.0/255.0, alpha: 1.0).cgColor
+//        
+//        let gradientLayer = CAGradientLayer()
+//        gradientLayer.colors = [colorTop, colorBottom]
+//        gradientLayer.locations = [0.0, 1.0]
+//        gradientLayer.frame = self.view.bounds
+//        
+//        self.tbView.layer.addSublayer(gradientLayer)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,11 +113,18 @@ class ChatViewController: UIViewController, UITextViewDelegate {
     
     func getMessage(notification: Notification)  {
         print("GetTTTTT")
+        tbView.reloadData()
     }
     
 
     @IBAction func btnAdd(_ sender: Any) {
-        let message = Message(receiveId: UserIdConfigure.leftId, sendId: UserIdConfigure.rightId, roomId: UserIdConfigure.roomId, content: self.tfChat.text!, type: .text, date: Date())
+        
+       let message = Message()
+       message.receiveId = UserIdConfigure.leftId
+       message.sendId = UserIdConfigure.rightId
+       message.roomId = UserIdConfigure.roomId
+       message.content = self.tfChat.text!
+       message.type = "0"
         
         sendMessage(message)
 
@@ -112,10 +137,12 @@ class ChatViewController: UIViewController, UITextViewDelegate {
     func sendMessage(_ message: Message) {
         
         SocketIOManager.sharedInstance.sendMessage(message:message)
+        SocketIOManager.messages.append(message)
         
-        messages.append(message)
+        print("Size of messages is \(SocketIOManager.messages.count)")
+        
         tbView.beginUpdates()
-        tbView.re.insertRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .automatic)
+        tbView.re.insertRows(at: [IndexPath(row: SocketIOManager.messages.count - 1, section: 0)], with: .automatic)
         tbView.endUpdates()
         
         
@@ -193,23 +220,27 @@ extension ChatViewController: UITableViewDelegate {
 
 extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return SocketIOManager.messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-       let message = messages[messages.count - (indexPath.row + 1)]
+       let message = SocketIOManager.messages[SocketIOManager.messages.count - (indexPath.row + 1)]
         if message.sendId == UserIdConfigure.rightId {
             //Right
             let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRightTableViewCell", for: indexPath) as! ChatRightTableViewCell
-            cell.configLayout(messages: messages, index: messages.count - (indexPath.row + 1))
+            cell.configLayout(messages: SocketIOManager.messages, index: SocketIOManager.messages.count - (indexPath.row + 1))
+            cell.backgroundColor = UIColor.clear
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLeftTableViewCell", for: indexPath) as! ChatLeftTableViewCell
-            cell.configLayout(messages: messages, index: messages.count - (indexPath.row + 1))
+            cell.configLayout(messages: SocketIOManager.messages, index: SocketIOManager.messages.count - (indexPath.row + 1))
+             cell.backgroundColor = UIColor.clear
             return cell
             
         }
+        
+       
     }
     
     

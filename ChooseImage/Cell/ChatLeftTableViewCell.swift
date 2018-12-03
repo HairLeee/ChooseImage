@@ -19,6 +19,9 @@ class ChatLeftTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+         imvAva.layer.cornerRadius = imvAva.frame.height/2
+         imvAva.clipsToBounds = true
+        
         lbMessage.layer.cornerRadius = 8
         lbMessage.layer.masksToBounds = true
         
@@ -36,7 +39,7 @@ class ChatLeftTableViewCell: UITableViewCell {
     func configLayout(messages: [Message], index:Int) {
         let message = messages[index]
         switch message.type {
-        case MessageType.text:
+        case "0":
             lbMessage.text = message.content
             
             break
@@ -44,7 +47,7 @@ class ChatLeftTableViewCell: UITableViewCell {
             break
         }
         
-        if index != 0 && messages[index - 1].sendId == UserIdConfigure.rightId {
+        if index != 0 && messages[index - 1].sendId == UserIdConfigure.leftId {
             imvAva.isHidden = true
         } else {
             imvAva.isHidden = false

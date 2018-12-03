@@ -7,6 +7,7 @@ target 'ChooseImage' do
     pod 'TOCropViewController'
     pod 'ReverseExtension'
     pod 'Socket.IO-Client-Swift', '~> 11.1.3'
+    pod 'ObjectMapper'
   # Pods for ChooseImage
 
   target 'ChooseImageTests' do
