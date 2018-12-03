@@ -51,8 +51,15 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(getMessage(notification:)), name: Notification.Name("getMessage"), object: nil)
+        
+        SocketIOManager.sharedInstance.connection()
+        
+       
     }
     
+  
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self)
@@ -85,9 +92,14 @@ class ChatViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
+    
+    func getMessage(notification: Notification)  {
+        print("GetTTTTT")
+    }
+    
 
     @IBAction func btnAdd(_ sender: Any) {
-        let message = Message(receiveId: "2", sendId: "1", roomId: "22", content: self.tfChat.text!, type: .text, date: Date())
+        let message = Message(receiveId: UserIdConfigure.leftId, sendId: UserIdConfigure.rightId, roomId: UserIdConfigure.roomId, content: self.tfChat.text!, type: .text, date: Date())
         
         sendMessage(message)
 
@@ -98,11 +110,18 @@ class ChatViewController: UIViewController, UITextViewDelegate {
     }
     
     func sendMessage(_ message: Message) {
+        
+        SocketIOManager.sharedInstance.sendMessage(message:message)
+        
         messages.append(message)
         tbView.beginUpdates()
         tbView.re.insertRows(at: [IndexPath(row: messages.count - 1, section: 0)], with: .automatic)
         tbView.endUpdates()
+        
+        
     }
+    
+
     
     
     var images = [UIImage]()
@@ -178,11 +197,19 @@ extension ChatViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLeftTableViewCell", for: indexPath) as! ChatLeftTableViewCell
+
        let message = messages[messages.count - (indexPath.row + 1)]
-        cell.configLayout(messages: messages, index: messages.count - (indexPath.row + 1))
-        
-        return cell
+        if message.sendId == UserIdConfigure.rightId {
+            //Right
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRightTableViewCell", for: indexPath) as! ChatRightTableViewCell
+            cell.configLayout(messages: messages, index: messages.count - (indexPath.row + 1))
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLeftTableViewCell", for: indexPath) as! ChatLeftTableViewCell
+            cell.configLayout(messages: messages, index: messages.count - (indexPath.row + 1))
+            return cell
+            
+        }
     }
     
     

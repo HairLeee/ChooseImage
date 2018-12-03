@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1235516921B4D3ED005DB998 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1235516821B4D3ED005DB998 /* SocketIOManager.swift */; };
+		1235516C21B4D476005DB998 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1235516B21B4D476005DB998 /* Constants.swift */; };
 		819020AB21B17885006EBB12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819020AA21B17885006EBB12 /* AppDelegate.swift */; };
 		819020AD21B17885006EBB12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819020AC21B17885006EBB12 /* ViewController.swift */; };
 		819020B021B17885006EBB12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 819020AE21B17885006EBB12 /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1235516821B4D3ED005DB998 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		1235516B21B4D476005DB998 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		427DB5EAC4CEE7152050ED32 /* Pods-ChooseImageUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChooseImageUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChooseImageUITests/Pods-ChooseImageUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		819020A721B17885006EBB12 /* ChooseImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChooseImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		819020AA21B17885006EBB12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,8 +114,17 @@
 		1235516721B4D2FC005DB998 /* Socket */ = {
 			isa = PBXGroup;
 			children = (
+				1235516821B4D3ED005DB998 /* SocketIOManager.swift */,
 			);
 			path = Socket;
+			sourceTree = "<group>";
+		};
+		1235516A21B4D461005DB998 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				1235516B21B4D476005DB998 /* Constants.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		8190209E21B17885006EBB12 = {
@@ -139,6 +152,7 @@
 		819020A921B17885006EBB12 /* ChooseImage */ = {
 			isa = PBXGroup;
 			children = (
+				1235516A21B4D461005DB998 /* Chat */,
 				1235516721B4D2FC005DB998 /* Socket */,
 				81F8107C21B242FA0049F322 /* Cell */,
 				819020AA21B17885006EBB12 /* AppDelegate.swift */,
@@ -407,11 +421,15 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ChooseImage/Pods-ChooseImage-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ReverseExtension/ReverseExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework",
 				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReverseExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarscreamSocketIO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +448,8 @@
 				819020AD21B17885006EBB12 /* ViewController.swift in Sources */,
 				81F8107F21B243120049F322 /* ChatTableViewCell.swift in Sources */,
 				81F8108521B272D70049F322 /* ChatRightTableViewCell.swift in Sources */,
+				1235516921B4D3ED005DB998 /* SocketIOManager.swift in Sources */,
+				1235516C21B4D476005DB998 /* Constants.swift in Sources */,
 				81F8108C21B273B50049F322 /* PaddingLabel.swift in Sources */,
 				81F8108221B25B740049F322 /* Message.swift in Sources */,
 				81F8107B21B240980049F322 /* ChatViewController.swift in Sources */,

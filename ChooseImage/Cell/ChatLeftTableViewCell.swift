@@ -44,7 +44,7 @@ class ChatLeftTableViewCell: UITableViewCell {
             break
         }
         
-        if index != 0 && messages[index - 1].sendId == "1" {
+        if index != 0 && messages[index - 1].sendId == UserIdConfigure.rightId {
             imvAva.isHidden = true
         } else {
             imvAva.isHidden = false
