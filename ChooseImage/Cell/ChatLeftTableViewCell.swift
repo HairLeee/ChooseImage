@@ -53,6 +53,12 @@ class ChatLeftTableViewCell: UITableViewCell {
             imvAva.isHidden = false
         }
         
+        if messages.count > index && messages[index].sendId == UserIdConfigure.rightId {
+            lbTime.isHidden = false
+        } else {
+            lbTime.isEnabled = true
+        }
+        
         
     }
     

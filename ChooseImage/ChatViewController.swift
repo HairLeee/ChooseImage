@@ -16,7 +16,8 @@ class ChatViewController: UIViewController, UITextViewDelegate {
     
    
  
-    @IBOutlet weak var tfChat: UITextView!
+    @IBOutlet weak var tfChat: VerticallyCenteredTextView!
+    
     @IBOutlet weak var imvPickImage: UIButton!
     @IBOutlet weak var btnAddOutlet: UIButton!
     @IBOutlet weak var tbView: UITableView!
@@ -38,7 +39,10 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         
         tbView.register(UINib(nibName: "ChatRightTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatRightTableViewCell")
         tbView.register(UINib(nibName: "ChatLeftTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatLeftTableViewCell")
-             tbView.register(UINib(nibName: "ChatRightImageTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatRightImageTableViewCell")
+        tbView.register(UINib(nibName: "ChatRightImageTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatRightImageTableViewCell")
+        tbView.register(UINib(nibName: "ChatLeftImageTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatLeftImageTableViewCell")
+        
+        
         
         
         
@@ -156,10 +160,7 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         hideChatIcon(isChatting: false)
         
     }
-    
-    
-    
-    
+
     func textViewDidBeginEditing(_ textView: UITextView) {
         checkIsChattingOrNot()
     }
@@ -223,10 +224,23 @@ extension ChatViewController: UITableViewDataSource {
                 break
             }
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLeftTableViewCell", for: indexPath) as! ChatLeftTableViewCell
-            cell.configLayout(messages: SocketIOManager.messages, index: SocketIOManager.messages.count - (indexPath.row + 1))
-             cell.backgroundColor = UIColor.clear
-            return cell
+            // Left
+            switch message.type {
+                case "0":
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLeftTableViewCell", for: indexPath) as! ChatLeftTableViewCell
+                    cell.configLayout(messages: SocketIOManager.messages, index: SocketIOManager.messages.count - (indexPath.row + 1))
+                    cell.backgroundColor = UIColor.clear
+                    return cell
+                case "1":
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLeftImageTableViewCell", for: indexPath) as! ChatLeftImageTableViewCell
+                    cell.configLayout(messages: SocketIOManager.messages, index: SocketIOManager.messages.count - (indexPath.row + 1))
+                    cell.backgroundColor = UIColor.clear
+                    return cell
+            default:
+                break
+            }
+            
+           
             
         }
         

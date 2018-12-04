@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12163DB121B6865000CF0BC0 /* ChatLeftImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12163DAF21B6865000CF0BC0 /* ChatLeftImageTableViewCell.swift */; };
+		12163DB221B6865000CF0BC0 /* ChatLeftImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12163DB021B6865000CF0BC0 /* ChatLeftImageTableViewCell.xib */; };
 		1235516921B4D3ED005DB998 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1235516821B4D3ED005DB998 /* SocketIOManager.swift */; };
 		1235516C21B4D476005DB998 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1235516B21B4D476005DB998 /* Constants.swift */; };
 		1235516F21B53C2F005DB998 /* ChatRightImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1235516D21B53C2F005DB998 /* ChatRightImageTableViewCell.swift */; };
@@ -50,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12163DAF21B6865000CF0BC0 /* ChatLeftImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLeftImageTableViewCell.swift; sourceTree = "<group>"; };
+		12163DB021B6865000CF0BC0 /* ChatLeftImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatLeftImageTableViewCell.xib; sourceTree = "<group>"; };
 		1235516821B4D3ED005DB998 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		1235516B21B4D476005DB998 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1235516D21B53C2F005DB998 /* ChatRightImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRightImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 				81F8108821B272FC0049F322 /* ChatLeftTableViewCell.xib */,
 				1235516D21B53C2F005DB998 /* ChatRightImageTableViewCell.swift */,
 				1235516E21B53C2F005DB998 /* ChatRightImageTableViewCell.xib */,
+				12163DAF21B6865000CF0BC0 /* ChatLeftImageTableViewCell.swift */,
+				12163DB021B6865000CF0BC0 /* ChatLeftImageTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -339,6 +345,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12163DB221B6865000CF0BC0 /* ChatLeftImageTableViewCell.xib in Resources */,
 				819020B521B17885006EBB12 /* LaunchScreen.storyboard in Resources */,
 				81F8108621B272D70049F322 /* ChatRightTableViewCell.xib in Resources */,
 				81F8108021B243120049F322 /* ChatTableViewCell.xib in Resources */,
@@ -457,6 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12163DB121B6865000CF0BC0 /* ChatLeftImageTableViewCell.swift in Sources */,
 				81F8108921B272FC0049F322 /* ChatLeftTableViewCell.swift in Sources */,
 				819020AD21B17885006EBB12 /* ViewController.swift in Sources */,
 				81F8107F21B243120049F322 /* ChatTableViewCell.swift in Sources */,
