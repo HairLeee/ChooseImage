@@ -8,6 +8,8 @@ target 'ChooseImage' do
     pod 'ReverseExtension'
     pod 'Socket.IO-Client-Swift', '~> 11.1.3'
     pod 'ObjectMapper'
+    pod 'Kingfisher', '~> 3.0'
+    pod 'Alamofire', '~> 4.4'
   # Pods for ChooseImage
 
   target 'ChooseImageTests' do

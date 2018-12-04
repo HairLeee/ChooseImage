@@ -20,8 +20,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3c-mU-daM" customClass="PaddingLabel" customModule="ChooseImage" customModuleProvider="target">
-                        <rect key="frame" x="259.5" y="2" width="175.5" height="262.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="264" y="2" width="186" height="259.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -29,8 +29,8 @@
                 <constraints>
                     <constraint firstItem="x3c-mU-daM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="DYU-B9-G3S"/>
                     <constraint firstItem="x3c-mU-daM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="120" id="Snw-6S-zvC"/>
-                    <constraint firstAttribute="bottom" secondItem="x3c-mU-daM" secondAttribute="bottom" constant="2" id="eNU-Ik-BhB"/>
-                    <constraint firstAttribute="trailing" secondItem="x3c-mU-daM" secondAttribute="trailing" constant="20" id="gb8-nK-4De"/>
+                    <constraint firstAttribute="bottom" secondItem="x3c-mU-daM" secondAttribute="bottom" constant="5" id="eNU-Ik-BhB"/>
+                    <constraint firstAttribute="trailing" secondItem="x3c-mU-daM" secondAttribute="trailing" constant="5" id="gb8-nK-4De"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

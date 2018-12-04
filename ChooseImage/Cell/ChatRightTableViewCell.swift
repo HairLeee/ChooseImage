@@ -18,7 +18,7 @@ class ChatRightTableViewCell: UITableViewCell {
         lbMessage.layer.cornerRadius = 8
         lbMessage.layer.masksToBounds = true
         
-        lbMessage.backgroundColor =   hexStringToUIColor(hex: "FFEE84")
+        lbMessage.backgroundColor =   hexStringToUIColor(hex: "59D037")
         lbMessage.layer.borderColor = UIColor.gray.cgColor
         lbMessage.layer.borderWidth = 0.2
     }

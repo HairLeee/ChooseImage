@@ -9,10 +9,10 @@
 import UIKit
 import ObjectMapper
 
-enum MessageType {
-    case text
-    case image
-    case icon
+struct MessageType {
+    var text = "0"
+    var image = "1"
+    var icon = "2"
 }
 
 class Message : Mappable {

@@ -27,20 +27,20 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vz-Rd-43F" customClass="PaddingLabel" customModule="ChooseImage" customModuleProvider="target">
-                        <rect key="frame" x="40" y="2" width="35.5" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="40" y="2" width="37.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeI-Pq-Kpn">
-                        <rect key="frame" x="80.5" y="8" width="24.5" height="11"/>
+                        <rect key="frame" x="82.5" y="9" width="24.5" height="11"/>
                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                         <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5vz-Rd-43F" secondAttribute="bottom" constant="2" id="2eE-D2-RgC"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5vz-Rd-43F" secondAttribute="bottom" constant="5" id="2eE-D2-RgC"/>
                     <constraint firstItem="PeI-Pq-Kpn" firstAttribute="leading" secondItem="5vz-Rd-43F" secondAttribute="trailing" constant="5" id="AJH-t4-NUr"/>
                     <constraint firstItem="PeI-Pq-Kpn" firstAttribute="bottom" secondItem="5vz-Rd-43F" secondAttribute="bottom" id="CSS-qc-xoN"/>
                     <constraint firstItem="5vz-Rd-43F" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="EgX-ql-6gy"/>

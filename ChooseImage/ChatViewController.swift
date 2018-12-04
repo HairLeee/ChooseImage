@@ -8,14 +8,19 @@
 
 import UIKit
 import ReverseExtension
+import Alamofire
+import ObjectMapper
 class ChatViewController: UIViewController, UITextViewDelegate {
 
     
     
    
  
-    @IBOutlet weak var tfChat: UITextField!
+    @IBOutlet weak var tfChat: UITextView!
+    @IBOutlet weak var imvPickImage: UIButton!
+    @IBOutlet weak var btnAddOutlet: UIButton!
     @IBOutlet weak var tbView: UITableView!
+    var placeholderLabel : UILabel!
 //    var messages = [Message]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +29,19 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         self.view.addGestureRecognizer(gestureRecognizer)
         
         tfChat.autocorrectionType = .no
+        tfChat.delegate = self
         
         tbView.dataSource = self
         tbView.delegate = self
         tbView.re.delegate = self
-        
+    
         
         tbView.register(UINib(nibName: "ChatRightTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatRightTableViewCell")
         tbView.register(UINib(nibName: "ChatLeftTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatLeftTableViewCell")
+             tbView.register(UINib(nibName: "ChatRightImageTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatRightImageTableViewCell")
+        
+        
+        
         tbView.separatorStyle = .none
         tbView.rowHeight = UITableViewAutomaticDimension
         tbView.backgroundColor = .clear
@@ -48,12 +58,13 @@ class ChatViewController: UIViewController, UITextViewDelegate {
 //
 //        self.tbView.backgroundColor = UIColor.hexStringToUIColor(hex: "F4F4F4")
         
-        let backgroundImage = UIImage(named: "bg2")
+        let backgroundImage = UIImage(named: "bg3")
         let imageView = UIImageView(image: backgroundImage)
         self.tbView.backgroundView = imageView
         tbView.bounds = view.frame.insetBy(dx: 10.0, dy: 50.0)
-    
-        
+
+       hideChatIcon(isChatting: false)
+       makePlaceHolder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,8 +74,10 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(getMessage(notification:)), name: Notification.Name("getMessage"), object: nil)
         
-        SocketIOManager.sharedInstance.connection()
+//        SocketIOManager.sharedInstance.connection()
         
+        
+      
        
     }
     
@@ -95,6 +108,7 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
                print("2 ~~~> \(self.view.frame.origin.y)")
+           checkIsChattingOrNot()
             
             if self.view.frame.origin.y != 0{
                 self.view.frame.origin.y += keyboardSize.height
@@ -106,6 +120,12 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         print("GetTTTTT")
         tbView.reloadData()
     }
+    
+    
+    @IBAction func btnSendImage(_ sender: Any) {
+        uploadImage()
+    }
+    
     
 
     @IBAction func btnAdd(_ sender: Any) {
@@ -121,10 +141,6 @@ class ChatViewController: UIViewController, UITextViewDelegate {
 
     }
     
-    func addImages()  {
-        images.append(UIImage(named: "23")!)
-    }
-    
     func sendMessage(_ message: Message) {
         
         SocketIOManager.sharedInstance.sendMessage(message:message)
@@ -136,68 +152,37 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         tbView.re.insertRows(at: [IndexPath(row: SocketIOManager.messages.count - 1, section: 0)], with: .automatic)
         tbView.endUpdates()
         
+        tfChat.text = nil
+        hideChatIcon(isChatting: false)
         
     }
     
-
     
-    
-    var images = [UIImage]()
-    var scrollView = UIScrollView()
-    var isShow = false
-    
-    @IBAction func btnImage(_ sender: Any) {
-        
-            addImages()
-        
-//        let scrollView = UIScrollView()
-        
-        let image = UIImage(named: "23")!
-        
-    
-        
-        for i in 0..<images.count {
-            let imageView = UIImageView()
-            let x = self.view.frame.size.width * CGFloat(i)
-            imageView.frame = CGRect(x: x, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = images[i]
-            
-            scrollView.contentSize.width = scrollView.frame.size.width * CGFloat(i + 1)
-            scrollView.addSubview(imageView)
-        }
-        
-        
-        
-        
-        
-        var customView = UIView(frame: CGRect(x: 0, y: self.view.frame.size.height-keyboardHeight!, width: self.view.frame.size.width, height: keyboardHeight!))
-        customView.backgroundColor = UIColor.blue
-        customView.layer.zPosition = CGFloat(MAXFLOAT)
-        customView.addSubview(scrollView)
-        
-        var windowz = UIApplication.shared.windows
-        
-        var windowCount = windowz.count
-        if !isShow {
-             customView.isHidden = false
-            windowz[windowCount-1].addSubview(customView);
-        } else {
-           windowz.removeLast()
-        }
-        
-        isShow = !isShow
-    }
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-//        self.isMenuHidden = true
+        checkIsChattingOrNot()
     }
     
     func textViewDidChange(_ textView: UITextView) {
-
+         placeholderLabel.isHidden = !textView.text.isEmpty
+        checkIsChattingOrNot()
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+//         hideChatIcon(isChatting: false)
     }
 
+    func hideChatIcon(isChatting:Bool){
+        if isChatting {
+            btnAddOutlet.isHidden = false
+            imvPickImage.isHidden = true
+        } else {
+            btnAddOutlet.isHidden = true
+            imvPickImage.isHidden = false
+        }
+        
+    }
     
 
 }
@@ -219,10 +204,24 @@ extension ChatViewController: UITableViewDataSource {
        let message = SocketIOManager.messages[SocketIOManager.messages.count - (indexPath.row + 1)]
         if message.sendId == UserIdConfigure.rightId {
             //Right
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRightTableViewCell", for: indexPath) as! ChatRightTableViewCell
-            cell.configLayout(messages: SocketIOManager.messages, index: SocketIOManager.messages.count - (indexPath.row + 1))
-            cell.backgroundColor = UIColor.clear
-            return cell
+            switch message.type {
+            case "0":
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRightTableViewCell", for: indexPath) as! ChatRightTableViewCell
+                cell.configLayout(messages: SocketIOManager.messages, index: SocketIOManager.messages.count - (indexPath.row + 1))
+                cell.backgroundColor = UIColor.clear
+                return cell
+            case "1":
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ChatRightImageTableViewCell", for: indexPath) as! ChatRightImageTableViewCell
+                    cell.alreadyShowTheImage = self
+                cell.configLayout(messages: SocketIOManager.messages, index: SocketIOManager.messages.count - (indexPath.row + 1))
+                cell.backgroundColor = UIColor.clear
+                return cell
+                
+                
+            default:
+                break
+            }
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLeftTableViewCell", for: indexPath) as! ChatLeftTableViewCell
             cell.configLayout(messages: SocketIOManager.messages, index: SocketIOManager.messages.count - (indexPath.row + 1))
@@ -231,9 +230,113 @@ extension ChatViewController: UITableViewDataSource {
             
         }
         
-       
+       return tableView.dequeueReusableCell(withIdentifier: "ChatRightTableViewCell", for: indexPath)
     }
     
     
     
+}
+
+extension ChatViewController: AlreadyShowTheImage {
+    func show() {
+        
+        print("Come here AlreadyShowTheImage")
+        // dont need
+//        let indexPath = IndexPath(item: SocketIOManager.messages.count - 1, section: 0)
+//        tbView.reloadRows(at: [indexPath], with: .top)
+
+    }
+    
+    func checkIsChattingOrNot(){
+        if tfChat.text != "" {
+            hideChatIcon(isChatting: true)
+        } else {
+            placeholderLabel.isHidden = false
+            placeholderLabel.text = "Say Something..."
+            hideChatIcon(isChatting: false)
+        }
+    }
+    
+    func makePlaceHolder(){
+        placeholderLabel = UILabel()
+        placeholderLabel.text = "Say Something..."
+        placeholderLabel.font = UIFont.italicSystemFont(ofSize: (tfChat.font?.pointSize)!)
+        placeholderLabel.sizeToFit()
+        tfChat.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: (tfChat.font?.pointSize)! / 2)
+        placeholderLabel.textColor = UIColor.lightGray
+        placeholderLabel.isHidden = !tfChat.text.isEmpty
+    }
+}
+
+extension ChatViewController {
+    
+    func uploadImage(){
+        let image = UIImage.init(named: "leftchat")
+        let imgData = UIImageJPEGRepresentation(image!, 0.2)!
+        
+        
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(imgData, withName: "chatImage",fileName: "file.jpg", mimeType: "image/jpg")
+        },
+        to:"http://35.187.243.177:6789/upload")
+        { (result) in
+            switch result {
+            case .success(let upload, _, _):
+                
+                upload.uploadProgress(closure: { (progress) in
+                    print("Upload Progress: \(progress.fractionCompleted)")
+   
+                })
+                
+                upload.responseJSON { response in
+              
+                    if let serverRes = Mapper<ServerResponse>().map(JSONObject: response.result.value) {
+                        print("url = \(serverRes.urlImage)")
+                        let message = Message()
+                        message.receiveId = UserIdConfigure.leftId
+                        message.sendId = UserIdConfigure.rightId
+                        message.roomId = UserIdConfigure.roomId
+                        message.content = serverRes.urlImage
+                        message.type = "1"
+                        self.sendMessage(message)
+                    }
+                    
+                    
+                }
+                
+            case .failure(let encodingError):
+                print(encodingError)
+            }
+        }
+    }
+}
+
+class ServerResponse: Mappable {
+    
+    
+    var urlImage:String = ""
+
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        urlImage <- map["urlImage"]
+  
+    }
+    
+    
+}
+
+
+class VerticallyCenteredTextView: UITextView {
+    override var contentSize: CGSize {
+        didSet {
+            var topCorrection = (bounds.size.height - contentSize.height * zoomScale) / 2.0
+            topCorrection = max(0, topCorrection)
+            contentInset = UIEdgeInsets(top: topCorrection, left: 0, bottom: 0, right: 0)
+        }
+    }
 }
