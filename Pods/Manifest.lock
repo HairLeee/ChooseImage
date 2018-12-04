@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.7.3)
+  - IQKeyboardManagerSwift (6.1.1)
   - Kingfisher (3.13.1)
   - ObjectMapper (3.3.0)
   - ReverseExtension (0.5.0)
@@ -10,6 +11,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - IQKeyboardManagerSwift
   - Kingfisher (~> 3.0)
   - ObjectMapper
   - ReverseExtension
@@ -19,6 +21,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - IQKeyboardManagerSwift
     - Kingfisher
     - ObjectMapper
     - ReverseExtension
@@ -28,6 +31,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
@@ -35,6 +39,6 @@ SPEC CHECKSUMS:
   StarscreamSocketIO: 00b54e4208481ca5cef089545353aaf126bae16d
   TOCropViewController: 0a075f02c253e88095143bbac7b013fc6fba5090
 
-PODFILE CHECKSUM: 2efe0a3e2242316330ae42df5be263cb980bf71e
+PODFILE CHECKSUM: d375be63bf2bb90323d6920e5e022df560f4dba3
 
 COCOAPODS: 1.5.3

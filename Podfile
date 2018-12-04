@@ -5,6 +5,7 @@ target 'ChooseImage' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
     pod 'TOCropViewController'
+    pod 'IQKeyboardManagerSwift'
     pod 'ReverseExtension'
     pod 'Socket.IO-Client-Swift', '~> 11.1.3'
     pod 'ObjectMapper'

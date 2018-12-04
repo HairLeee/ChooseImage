@@ -10,6 +10,7 @@ import UIKit
 import ReverseExtension
 import Alamofire
 import ObjectMapper
+import IQKeyboardManagerSwift
 class ChatViewController: UIViewController, UITextViewDelegate {
 
     
@@ -73,14 +74,15 @@ class ChatViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(getMessage(notification:)), name: Notification.Name("getMessage"), object: nil)
         
 //        SocketIOManager.sharedInstance.connection()
         
-        
+         IQKeyboardManager.shared.enable = true
+ 
       
        
     }
@@ -127,7 +129,11 @@ class ChatViewController: UIViewController, UITextViewDelegate {
     
     
     @IBAction func btnSendImage(_ sender: Any) {
-        uploadImage()
+         let joinPU = JoinPhotoPopup.instanceFromNib()
+        joinPU.animationType = .upDown
+        joinPU.show()
+        
+//        uploadImage()
     }
     
     

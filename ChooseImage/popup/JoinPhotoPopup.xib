@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="NanumSquareOTFR.otf">
+            <string>NanumSquareOTFR</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="UIn-br-uHH" customClass="JoinPhotoPopup" customModule="QClub" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="368" height="170"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMv-Bx-oE4">
+                    <rect key="frame" x="0.0" y="0.0" width="368" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1kw-SL-cJV">
+                            <rect key="frame" x="0.0" y="0.0" width="368" height="50"/>
+                            <state key="normal" title="앨범으로 이동">
+                                <color key="titleColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="selectFromAlbumTUI:" destination="UIn-br-uHH" eventType="touchUpInside" id="k1O-ra-1b1"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.66666666666666663" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="1kw-SL-cJV" secondAttribute="trailing" id="EzT-MP-8l6"/>
+                        <constraint firstItem="1kw-SL-cJV" firstAttribute="top" secondItem="oMv-Bx-oE4" secondAttribute="top" id="o85-Ky-GRJ"/>
+                        <constraint firstAttribute="height" constant="50" id="qZY-fd-Sqc"/>
+                        <constraint firstAttribute="bottom" secondItem="1kw-SL-cJV" secondAttribute="bottom" id="tjU-HP-4bd"/>
+                        <constraint firstItem="1kw-SL-cJV" firstAttribute="leading" secondItem="oMv-Bx-oE4" secondAttribute="leading" id="wH4-lh-BHc"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6v7-fK-2ko">
+                    <rect key="frame" x="0.0" y="50" width="368" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="yfR-Rd-X5k"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="NanumSquareOTFR" family="NanumSquareOTF" pointSize="17"/>
+                    <state key="normal" title="직접 찍기">
+                        <color key="titleColor" red="0.38039215686274508" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="takeAPhotoTUI:" destination="UIn-br-uHH" eventType="touchUpInside" id="3kL-rI-Bu6"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRX-jO-LX5">
+                    <rect key="frame" x="0.0" y="101" width="368" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="hOb-X8-nNU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="NanumSquareOTFR" family="NanumSquareOTF" pointSize="17"/>
+                    <state key="normal" title="사진 삭제">
+                        <color key="titleColor" red="0.3803921569" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="deleteImage:" destination="UIn-br-uHH" eventType="touchUpInside" id="ngX-S9-5aF"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eTj-eh-Uby">
+                    <rect key="frame" x="0.0" y="100" width="368" height="1"/>
+                    <color key="backgroundColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="iQ7-ak-MWF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="6v7-fK-2ko" firstAttribute="leading" secondItem="UIn-br-uHH" secondAttribute="leading" id="4pt-Ia-wxo"/>
+                <constraint firstItem="6v7-fK-2ko" firstAttribute="top" secondItem="oMv-Bx-oE4" secondAttribute="bottom" id="CZD-Jk-gj2"/>
+                <constraint firstItem="eTj-eh-Uby" firstAttribute="top" secondItem="6v7-fK-2ko" secondAttribute="bottom" id="F9g-Dd-MDF"/>
+                <constraint firstAttribute="trailing" secondItem="oMv-Bx-oE4" secondAttribute="trailing" id="K5O-ER-LqP"/>
+                <constraint firstAttribute="trailing" secondItem="VRX-jO-LX5" secondAttribute="trailing" id="R8R-9e-PQ3"/>
+                <constraint firstItem="eTj-eh-Uby" firstAttribute="leading" secondItem="UIn-br-uHH" secondAttribute="leading" id="Z2o-CQ-I6T"/>
+                <constraint firstItem="oMv-Bx-oE4" firstAttribute="top" secondItem="UIn-br-uHH" secondAttribute="top" id="cB0-dO-dN4"/>
+                <constraint firstItem="VRX-jO-LX5" firstAttribute="leading" secondItem="UIn-br-uHH" secondAttribute="leading" id="fos-KO-smb"/>
+                <constraint firstAttribute="trailing" secondItem="eTj-eh-Uby" secondAttribute="trailing" id="pVR-Lg-exg"/>
+                <constraint firstAttribute="trailing" secondItem="6v7-fK-2ko" secondAttribute="trailing" id="rPu-xD-YEB"/>
+                <constraint firstItem="oMv-Bx-oE4" firstAttribute="leading" secondItem="UIn-br-uHH" secondAttribute="leading" id="ucW-kH-Ohf"/>
+                <constraint firstItem="VRX-jO-LX5" firstAttribute="top" secondItem="eTj-eh-Uby" secondAttribute="bottom" id="wbA-nk-muZ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="5"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="-357" y="-128"/>
+        </view>
+    </objects>
+</document>
