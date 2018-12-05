@@ -19,9 +19,16 @@ class ChatViewController: UIViewController, UITextViewDelegate {
  
     @IBOutlet weak var tfChat: VerticallyCenteredTextView!
     
+    @IBOutlet var rootView: UIView!
+    
+    
+    @IBOutlet weak var imvCamera: UIButton!
     @IBOutlet weak var imvPickImage: UIButton!
     @IBOutlet weak var btnAddOutlet: UIButton!
     @IBOutlet weak var tbView: UITableView!
+    
+    @IBOutlet weak var imvScrollDown: UIImageView!
+    @IBOutlet weak var headerView: UIView!
     var placeholderLabel : UILabel!
 //    var messages = [Message]()
     override func viewDidLoad() {
@@ -29,7 +36,7 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         
         let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hide))
         self.view.addGestureRecognizer(gestureRecognizer)
-        
+
         tfChat.autocorrectionType = .no
         tfChat.delegate = self
         
@@ -59,29 +66,39 @@ class ChatViewController: UIViewController, UITextViewDelegate {
             print("scrollViewDidReachBottom")
         }
         
+//        tbView.scrollToRow(at: <#T##IndexPath#>, at: <#T##UITableViewScrollPosition#>, animated: <#T##Bool#>)
+        
 //        self.view.backgroundColor = UIColor.hexStringToUIColor(hex: "F4F4F4")
 //
 //        self.tbView.backgroundColor = UIColor.hexStringToUIColor(hex: "F4F4F4")
         
-        let backgroundImage = UIImage(named: "bg3")
-        let imageView = UIImageView(image: backgroundImage)
-        self.tbView.backgroundView = imageView
-        tbView.bounds = view.frame.insetBy(dx: 10.0, dy: 50.0)
+//        let backgroundImage = UIImage(named: "bg3")
+//        let imageView = UIImageView(image: backgroundImage)
+//        self.tbView.backgroundView = imageView
+//        tbView.bounds = view.frame.insetBy(dx: 10.0, dy: 50.0)
+        
+//        headerView.backgroundColor = UIColor.clear
+         rootView.backgroundColor = UIColor.clear
+        
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "bg12")
+        backgroundImage.contentMode =  UIViewContentMode.scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
 
-       hideChatIcon(isChatting: false)
+       
        makePlaceHolder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(getMessage(notification:)), name: Notification.Name("getMessage"), object: nil)
         
-//        SocketIOManager.sharedInstance.connection()
+
         
-         IQKeyboardManager.shared.enable = true
+//         IQKeyboardManager.shared.enable = true
  
       
        
@@ -102,22 +119,29 @@ class ChatViewController: UIViewController, UITextViewDelegate {
     @objc final func keyboardWillShow(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
-            print("1 ~~~> \(self.view.frame.origin.y)")
+            print("1 ~~~> \(self.rootView.frame.origin.y)")
             keyboardHeight = keyboardSize.height
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
+            if self.rootView.frame.origin.y == 80{
+                self.rootView.frame.origin.y -= keyboardSize.height
+                self.tbView.layoutMargins = UIEdgeInsets(top: keyboardSize.height,
+                                                       left: 0,
+                                                       bottom: 0,
+                                                       right: 0)}
         }
     }
     
     @objc final func keyboardWillHide(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
-               print("2 ~~~> \(self.view.frame.origin.y)")
-           checkIsChattingOrNot()
+               print("2 ~~~> \(self.rootView.frame.origin.y)")
+           checkIsChattingOrNot(text: tfChat.text)
             
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
+            if self.rootView.frame.origin.y != 80{
+                self.rootView.frame.origin.y += keyboardSize.height
+                self.tbView.layoutMargins = UIEdgeInsets(top: 0,
+                                                         left: 0,
+                                                         bottom: 0,
+                                                         right: 0)
             }
         }
     }
@@ -129,11 +153,11 @@ class ChatViewController: UIViewController, UITextViewDelegate {
     
     
     @IBAction func btnSendImage(_ sender: Any) {
-         let joinPU = JoinPhotoPopup.instanceFromNib()
-        joinPU.animationType = .upDown
-        joinPU.show()
+//         let joinPU = JoinPhotoPopup.instanceFromNib()
+//        joinPU.animationType = .upDown
+//        joinPU.show()
         
-//        uploadImage()
+        uploadImage()
     }
     
     
@@ -163,34 +187,37 @@ class ChatViewController: UIViewController, UITextViewDelegate {
         tbView.endUpdates()
         
         tfChat.text = nil
-        hideChatIcon(isChatting: false)
+        hideChatIcon(isChatting: false, text: "")
         
     }
 
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        checkIsChattingOrNot()
-    }
-    
     func textViewDidChange(_ textView: UITextView) {
          placeholderLabel.isHidden = !textView.text.isEmpty
-        checkIsChattingOrNot()
+        checkIsChattingOrNot(text: textView.text)
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
 //         hideChatIcon(isChatting: false)
     }
 
-    func hideChatIcon(isChatting:Bool){
+    func hideChatIcon(isChatting:Bool, text:String){
         if isChatting {
             btnAddOutlet.isHidden = false
             imvPickImage.isHidden = true
+            imvCamera.isHidden = true
+            if text.count == 1 {
+                btnAddOutlet.animationScale(uiview: btnAddOutlet)
+            }
+            
         } else {
             btnAddOutlet.isHidden = true
             imvPickImage.isHidden = false
+             imvCamera.isHidden = false
+            imvPickImage.animationScale(uiview: imvPickImage)
+            imvCamera.animationScale(uiview: imvCamera)
         }
         
     }
-    
 
 }
 
@@ -245,12 +272,23 @@ extension ChatViewController: UITableViewDataSource {
             default:
                 break
             }
-            
-           
-            
+ 
         }
         
        return tableView.dequeueReusableCell(withIdentifier: "ChatRightTableViewCell", for: indexPath)
+    }
+    
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if targetContentOffset.pointee.y > 100 {
+            imvScrollDown.isHidden = false
+            imvScrollDown.animationScale(uiview: imvScrollDown)
+        } else {
+            imvScrollDown.isHidden = true
+           
+        }
+        
     }
     
     
@@ -267,20 +305,20 @@ extension ChatViewController: AlreadyShowTheImage {
 
     }
     
-    func checkIsChattingOrNot(){
+    func checkIsChattingOrNot(text:String){
         if tfChat.text != "" {
-            hideChatIcon(isChatting: true)
+            hideChatIcon(isChatting: true, text: text)
         } else {
             placeholderLabel.isHidden = false
             placeholderLabel.text = "Say Something..."
-            hideChatIcon(isChatting: false)
+            hideChatIcon(isChatting: false,text: text)
         }
     }
     
     func makePlaceHolder(){
         placeholderLabel = UILabel()
         placeholderLabel.text = "Say Something..."
-        placeholderLabel.font = UIFont.italicSystemFont(ofSize: (tfChat.font?.pointSize)!)
+//        placeholderLabel.font = UIFont.italicSystemFont(ofSize: (tfChat.font?.pointSize)!)
         placeholderLabel.sizeToFit()
         tfChat.addSubview(placeholderLabel)
         placeholderLabel.frame.origin = CGPoint(x: 5, y: (tfChat.font?.pointSize)! / 2)
@@ -292,7 +330,7 @@ extension ChatViewController: AlreadyShowTheImage {
 extension ChatViewController {
     
     func uploadImage(){
-        let image = UIImage.init(named: "leftchat")
+        let image = UIImage.init(named: "ava")
         let imgData = UIImageJPEGRepresentation(image!, 0.2)!
         
         
@@ -321,8 +359,6 @@ extension ChatViewController {
                         message.type = "1"
                         self.sendMessage(message)
                     }
-                    
-                    
                 }
                 
             case .failure(let encodingError):
@@ -330,6 +366,22 @@ extension ChatViewController {
             }
         }
     }
+}
+
+extension UIView {
+    
+    func animationScale(uiview:UIView)  {
+        UIView.animate(withDuration: 0.3,
+                       animations: {
+                        uiview.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        },
+                       completion: { _ in
+                        UIView.animate(withDuration: 0.3) {
+                           uiview.transform = CGAffineTransform.identity
+                        }
+        })
+    }
+  
 }
 
 class ServerResponse: Mappable {

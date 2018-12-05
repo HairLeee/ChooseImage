@@ -18,9 +18,9 @@ class SocketIOManager: NSObject {
     
     
     //for swift3
-//    lazy var socket = SocketIOClient(socketURL: URL(string: "http://10.1.5.161:6789")!)
+    lazy var socket = SocketIOClient(socketURL: URL(string: "http://10.1.5.161:6789")!)
 //    lazy var socket = SocketIOClient(socketURL: URL(string: "http://35.185.186.230:8010")!)
-    lazy var socket = SocketIOClient(socketURL: URL(string: "http://35.187.243.177:6789")!)
+//    lazy var socket = SocketIOClient(socketURL: URL(string: "http://35.187.243.177:6789")!)
     static var messages = [Message]()
     override init() {
         super.init()

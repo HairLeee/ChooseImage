@@ -12,7 +12,7 @@ let SCREEN_WIDTH = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 
 struct UserIdConfigure {
-    static let rightId = "1"
-    static let leftId = "2"
+    static let rightId = "2"
+    static let leftId = "1"
     static let roomId = "22"
 }
