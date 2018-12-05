@@ -304,14 +304,14 @@ extension ChatViewController: AlreadyShowTheImage {
             hideChatIcon(isChatting: true, text: text)
         } else {
             placeholderLabel.isHidden = false
-            placeholderLabel.text = "Say Something..."
+            placeholderLabel.text = "Messages"
             hideChatIcon(isChatting: false,text: text)
         }
     }
     
     func makePlaceHolder(){
         placeholderLabel = UILabel()
-        placeholderLabel.text = "Say Something..."
+        placeholderLabel.text = "Messages"
         //        placeholderLabel.font = UIFont.italicSystemFont(ofSize: (tfChat.font?.pointSize)!)
         placeholderLabel.sizeToFit()
         tfChat.addSubview(placeholderLabel)
@@ -363,8 +363,10 @@ extension ChatViewController {
     
     func scrollToBottom(){
         DispatchQueue.main.async {
-            let indexPath = IndexPath(row: 0, section: 0)
-            self.tbView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            if SocketIOManager.messages.count > 0 {
+                let indexPath = IndexPath(row: 0, section: 0)
+                self.tbView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }    
         }
     }
 }
