@@ -154,6 +154,9 @@ class ChatViewController: UIViewController, UITextViewDelegate, UINavigationCont
         self.pickImage(isLibrary: true)
     }
     
+    @IBAction func btnSendImageByCamera(_ sender: Any) {
+         self.pickImage(isLibrary: false)
+    }
     
     
     @IBAction func btnAdd(_ sender: Any) {

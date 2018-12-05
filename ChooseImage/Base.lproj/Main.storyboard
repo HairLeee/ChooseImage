@@ -108,6 +108,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4d-Eh-CGp">
                                                 <rect key="frame" x="300" y="13" width="25" height="25"/>
                                                 <state key="normal" image="camera_ic"/>
+                                                <connections>
+                                                    <action selector="btnSendImageByCamera:" destination="9gc-MX-gVR" eventType="touchUpInside" id="599-YQ-h1Q"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
